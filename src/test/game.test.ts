@@ -2,6 +2,7 @@ import Game from '../main/game.main';
 
 describe('게임 테스트', () => {
   let game: Game;
+
   beforeEach(() => {
     game = new Game();
   });
@@ -14,18 +15,21 @@ describe('게임 테스트', () => {
     game.roll(0);
   });
 
-  test('볼링 Game에서 핀을 한 번도 쓰러트리지 못하면 0을 반환해야 된다.', () => {
-    for (let i = 0; i < 20; i++) {
-      game.roll(0);
+  // 공을 여러 번 굴릴 때 중복 제거를 위한 함수
+  function rollMany(frames: number, pins: number): void {
+    for (let i = 0; i < frames; i++) {
+      game.roll(pins);
     }
+  }
+
+  test('볼링 Game에서 핀을 한 번도 쓰러트리지 못하면 0을 반환해야 된다.', () => {
+    rollMany(20, 0);
 
     expect(game.getScore()).toBe(0);
   });
 
   test('볼링 Game에서 핀을 계속 한 번씩만 쓰러트렸을 때는 20을 반환해야 한다.', () => {
-    for (let i = 0; i < 20; i++) {
-      game.roll(1);
-    }
+    rollMany(20, 1);
 
     expect(game.getScore()).toBe(20);
   });
