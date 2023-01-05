@@ -1,4 +1,11 @@
 export default class Game {
-  // @ts-ignore
-  roll(pins: number): void {}
+  private score: number = 0;
+
+  getScore(): number {
+    return this.score;
+  }
+
+  roll(pins: number): void {
+    this.score += pins;
+  }
 }
