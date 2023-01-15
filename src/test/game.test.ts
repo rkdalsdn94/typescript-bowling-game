@@ -33,4 +33,13 @@ describe('게임 테스트', () => {
 
     expect(game.getScore()).toBe(20);
   });
+
+  test('1스페어 후 다음 공에서 핀을 3번 쓰러트리고, 나머지 공에선 핀을 못 쓰러트리면 16을 반환해야 된다.', () => {
+    game.roll(5);
+    game.roll(5); // spare
+    game.roll(3);
+    rollMany(17, 0);
+
+    expect(game.getScore()).toBe(16);
+  });
 });
