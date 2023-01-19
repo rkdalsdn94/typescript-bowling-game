@@ -15,14 +15,12 @@ describe('게임 테스트', () => {
     game.roll(0);
   });
 
-  // 공을 여러 번 굴릴 때 중복 제거를 위한 함수
   function rollMany(frames: number, pins: number): void {
     for (let i = 0; i < frames; i++) {
       game.roll(pins);
     }
   }
 
-  // Spare 처리 함수
   function rollSpare(game: Game) {
     game.roll(5);
     game.roll(5);
@@ -46,5 +44,15 @@ describe('게임 테스트', () => {
     rollMany(17, 0);
 
     expect(game.getScore()).toBe(16);
+  });
+
+  test('1스트라이크 후 다음 공에서 핀에서 5번, 3번 쓰러트린 후, 나머지 공에선 핀을 못 쓰러트리면 26을 반환해야 된다.', () => {
+    game.roll(10);
+    game.roll(5);
+    game.roll(3);
+
+    rollMany(16, 0);
+
+    expect(game.getScore()).toBe(26);
   });
 });
