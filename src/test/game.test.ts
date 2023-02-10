@@ -26,6 +26,10 @@ describe('게임 테스트', () => {
     game.roll(5);
   }
 
+  function rollStrike() {
+    game.roll(10);
+  }
+
   test('볼링 Game에서 핀을 한 번도 쓰러트리지 못하면 0을 반환해야 된다.', () => {
     rollMany(20, 0);
 
@@ -47,7 +51,7 @@ describe('게임 테스트', () => {
   });
 
   test('1스트라이크 후 다음 공에서 핀에서 5번, 3번 쓰러트린 후, 나머지 공에선 핀을 못 쓰러트리면 26을 반환해야 된다.', () => {
-    game.roll(10);
+    rollStrike();
     game.roll(5);
     game.roll(3);
 
