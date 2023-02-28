@@ -59,4 +59,12 @@ describe('게임 테스트', () => {
 
     expect(game.getScore()).toBe(26);
   });
+
+  test('모든 공을 다 쓰러트리는 Perfect Game 일 때는 300을 반환해야 한다.', () => {
+    rollMany(10, 10);
+    game.roll(10);
+    game.roll(10);
+
+    expect(game.getScore()).toBe(300);
+  });
 });
